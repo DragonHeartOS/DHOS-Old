@@ -1,4 +1,5 @@
 #include "Controllers/IO.h"
+#include "Debug.h"
 #include "Katline.h"
 #include <Controllers/SerialController.h>
 
@@ -21,15 +22,17 @@ bool SerialController::Init()
     IO::OutB(PORT + 0, 0xae); // Test serial chip (send byte 0xAE and check if serial returns same byte)
 
     if (IO::InB(PORT + 0) != 0xAE) {
-        k_framebuffer_controller.PutString("[SerialController] Failed to initialize serial: test failed.");
+        Debug::WriteFormatted("[SerialController] Failed to initialize serial: test failed.\n");
         return false;
     }
 
     m_enabled = true;
-    k_framebuffer_controller.PutString("[SerialController] Initialized.");
 
     // Serial not faulty, set it to normal mode
     IO::OutB(PORT + 4, 0x0f);
+
+    Debug::WriteFormatted("[SerialController] Initialized.\n");
+
     return true;
 }
 
