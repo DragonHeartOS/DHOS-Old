@@ -15,8 +15,6 @@ void KatlineMain(Controller::Framebuffer* framebuffer)
     k_framebuffer_controller = Controller::FramebufferController(framebuffer);
 
     k_serial_controller.Init();
-
-    Debug::WriteFormatted("Among us?!?!?!?!? %d", 23467824768);
 }
 
 }
