@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+// clang-format off
+
 namespace Katline {
 
 namespace Font {
