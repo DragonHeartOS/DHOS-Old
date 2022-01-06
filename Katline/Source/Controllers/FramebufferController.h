@@ -30,6 +30,7 @@ public:
     void PutCharacter(char ch, bool inverted=false);
 
     void PutStringSafe(const char * string, size_t size, bool inverted=false);
+    void PutString(const char * string, bool inverted=false);
 
     Color::RGBColor color = Color::WHITE;
 

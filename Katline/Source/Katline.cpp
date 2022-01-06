@@ -11,7 +11,8 @@ void KatlineMain(KGraphics::Framebuffer *framebuffer)
 {
     k_framebuffer_controller = KGraphics::FramebufferController(framebuffer);
 
-    k_framebuffer_controller.PutStringSafe("Hello framebuffer text rendering!", 33);
+    k_framebuffer_controller.PutStringSafe("Hello framebuffer text rendering!\n", 34);
+    k_framebuffer_controller.PutString("This is another test", true);
 }
 
 }

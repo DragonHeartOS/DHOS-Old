@@ -85,7 +85,15 @@ void FramebufferController::PutCharacter(char ch, bool inverted)
 void FramebufferController::PutStringSafe(const char * string, size_t size, bool inverted)
 {
     for (size_t i = 0; i < size; i++)
-        PutCharacter(string[i]);
+        PutCharacter(string[i], inverted);
+}
+
+void FramebufferController::PutString(const char * string, bool inverted)
+{
+    while (string[0] != '\0') {
+        PutCharacter(string[0], inverted);
+        string++;
+    }
 }
 
 }
