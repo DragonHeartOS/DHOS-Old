@@ -1,0 +1,6 @@
+[submodule "Katline/Source/stivale"]
+	path = Katline/Source/stivale
+	url = https://github.com/stivale/stivale
+[submodule "limine"]
+	path = limine
+	url = https://github.com/limine-bootloader/limine.git
