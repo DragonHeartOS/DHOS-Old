@@ -1,5 +1,7 @@
 set (SOURCES
     Source/Controllers/FramebufferController.cpp
+    Source/Controllers/SerialController.cpp
+    Source/Debug.cpp
     Source/StivaleStart.cpp
     Source/Katline.cpp)
 

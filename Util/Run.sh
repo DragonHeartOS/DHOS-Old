@@ -14,7 +14,7 @@ fi
 
 if [ "$SYSTEM" = 'QEMU' ] ; then
     QEMU_BIN='qemu-system-x86_64'
-    QEMU_ARGS="-enable-kvm -m 1G"
+    QEMU_ARGS="-enable-kvm -m 1G -serial stdio"
     if [ "$BOOT_MODE" = 'DISK' ] ; then
         QEMU_ARGS="$QEMU_ARGS -drive format=raw,file=_disk_image"
     elif [ "$BOOT_MODE" = 'CDROM' ] ; then
