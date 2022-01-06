@@ -1,14 +1,23 @@
+#include "CommonLib/Color.h"
 #include "Font.h"
+#include "Logo.h"
 #include <CommonLib/Math.h>
 #include <Controllers/FramebufferController.h>
 #include <cstddef>
+#include <cstdint>
+
+namespace Katline {
 
 namespace KGraphics {
+
+const uint FRAMEBUFFER_TEXT_Y_OFFSET = 72;
 
 FramebufferController::FramebufferController(Framebuffer *framebuffer)
     : m_framebuffer(framebuffer)
 {
     this->m_framebuffer = framebuffer;
+
+    PutLogo(Logo::Data, Logo::Width, Logo::Height, 10, 20);
 }
 
 void FramebufferController::PlotPixel(uint y, uint x)
@@ -50,6 +59,7 @@ void FramebufferController::Rect(uint y1, uint x1, uint y2, uint x2)
 
 void FramebufferController::DrawRawCharacter(char ch, uint y, uint x, bool inverted)
 {
+    y += FRAMEBUFFER_TEXT_Y_OFFSET;
     for (uint temp_y = 0; temp_y < 8; temp_y++) {
         for (uint temp_x = 0; temp_x < 8; temp_x++) {
             auto character = Katline::Font::KernelFontStd[(uint) ch * 8 + temp_y];
@@ -94,6 +104,25 @@ void FramebufferController::PutString(const char * string, bool inverted)
         PutCharacter(string[0], inverted);
         string++;
     }
+}
+
+void FramebufferController::PutLogo(const uint8_t *data, uint width, uint height, uint x, uint y)
+{
+    Color::RGBColor old_color = color;
+
+    for (uint i=0; i < height; i++) {
+        for (uint j=0; j < width; j++) {
+            color.r = data[i * width * 3 + j * 3];
+            color.g = data[i * width * 3 + j * 3 + 1];
+            color.b = data[i * width * 3 + j * 3 + 2];
+
+            PlotPixel(i + y, j + x);
+        }
+    }
+
+    color = old_color;
+}
+
 }
 
 }

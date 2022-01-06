@@ -6,6 +6,8 @@
 #include <CommonLib/Color.h>
 #include <CommonLib/Math.h>
 
+namespace Katline {
+
 namespace KGraphics {
 
 struct Framebuffer {
@@ -32,6 +34,8 @@ public:
     void PutStringSafe(const char * string, size_t size, bool inverted=false);
     void PutString(const char * string, bool inverted=false);
 
+    void PutLogo(const uint8_t *data, uint width, uint height, uint x, uint y);
+
     Color::RGBColor color = Color::WHITE;
 
     Math::Point cursor_position;
@@ -39,5 +43,7 @@ public:
 private:
     Framebuffer *m_framebuffer;
 };
+
+}
 
 }
