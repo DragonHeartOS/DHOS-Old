@@ -15,33 +15,33 @@ struct Framebuffer {
     uint16_t width, height;
     uint16_t pitch;
     uint16_t bpp;
-    uint8_t *data;
+    uint8_t* data;
 };
 
 class FramebufferController {
 public:
-    FramebufferController(Framebuffer *framebuffer);
+    FramebufferController(Framebuffer* framebuffer);
 
     void PlotPixel(uint y, uint x);
 
     void Rect(uint y1, uint x1, uint y2, uint x2);
 
-    void DrawRawCharacter(char ch, uint y, uint x, bool inverted=false);
-    void DrawCharacter(char ch, bool inverted=false);
+    void DrawRawCharacter(char ch, uint y, uint x, bool inverted = false);
+    void DrawCharacter(char ch, bool inverted = false);
 
-    void PutCharacter(char ch, bool inverted=false);
+    void PutCharacter(char ch, bool inverted = false);
 
-    void PutStringSafe(const char * string, size_t size, bool inverted=false);
-    void PutString(const char * string, bool inverted=false);
+    void PutStringSafe(const char* string, size_t size, bool inverted = false);
+    void PutString(const char* string, bool inverted = false);
 
-    void PutLogo(const uint8_t *data, uint width, uint height, uint x, uint y);
+    void PutLogo(const uint8_t* data, uint width, uint height, uint x, uint y);
 
     Color::RGBColor color = Color::WHITE;
 
     Math::Point cursor_position;
 
 private:
-    Framebuffer *m_framebuffer;
+    Framebuffer* m_framebuffer;
 };
 
 }

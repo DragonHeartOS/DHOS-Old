@@ -4,7 +4,9 @@ namespace Math {
 
 class Point {
 public:
-    Point(int y=0, int x=0) : m_y(y), m_x(x) { };
+    Point(int y = 0, int x = 0)
+        : m_y(y)
+        , m_x(x) {};
 
     int Y() { return m_y; }
     int X() { return m_x; }

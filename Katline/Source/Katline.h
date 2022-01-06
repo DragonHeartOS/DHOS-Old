@@ -6,6 +6,6 @@ namespace Katline {
 
 extern KGraphics::FramebufferController k_framebuffer_controller;
 
-void KatlineMain(KGraphics::Framebuffer *framebuffer);
+void KatlineMain(KGraphics::Framebuffer* framebuffer);
 
 }
