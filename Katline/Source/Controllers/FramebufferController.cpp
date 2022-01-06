@@ -67,13 +67,18 @@ void FramebufferController::DrawCharacter(char ch, bool inverted)
 
 void FramebufferController::PutCharacter(char ch, bool inverted)
 {
-    DrawCharacter(ch, inverted);
-
-    cursor_position.SetX(cursor_position.X() + 8);
-
-    if (cursor_position.X() > m_framebuffer->width) {
+    if (ch == '\n') {
         cursor_position.SetX(0);
         cursor_position.SetY(cursor_position.Y() + 8);
+    } else {
+        DrawCharacter(ch, inverted);
+
+        cursor_position.SetX(cursor_position.X() + 8);
+
+        if (cursor_position.X() > m_framebuffer->width) {
+            cursor_position.SetX(0);
+            cursor_position.SetY(cursor_position.Y() + 8);
+        }
     }
 }
 
