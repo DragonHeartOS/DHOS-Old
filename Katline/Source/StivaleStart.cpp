@@ -11,18 +11,11 @@ static std::uint8_t stack[8192];
 
 extern "C" void kernel_start(stivale2_struct*);
 
-static stivale2_header_tag_terminal terminal_hdr_tag = {
-    .tag = {
-        .identifier = STIVALE2_HEADER_TAG_TERMINAL_ID,
-        .next = 0
-    },
-    .flags = 0
-};
 
 static stivale2_header_tag_framebuffer framebuffer_hdr_tag = {
     .tag = {
         .identifier = STIVALE2_HEADER_TAG_FRAMEBUFFER_ID,
-        .next = (uint64_t) &terminal_hdr_tag
+        .next = 0
     },
     .framebuffer_width  = 0,
     .framebuffer_height = 0,
@@ -52,25 +45,14 @@ void *stivale2_get_tag(struct stivale2_struct *stivale_struct, uint64_t id) {
 }
 
 extern "C" void kernel_start(stivale2_struct *stivale_struct) {
-    auto term_str_tag = (stivale2_struct_tag_terminal*) stivale2_get_tag(stivale_struct, STIVALE2_STRUCT_TAG_TERMINAL_ID);
- 
-    if (term_str_tag == NULL)
-        for (;;)
-            asm ("hlt");
- 
-    void (*term_write)(const char *string, size_t length) = (void (*)(const char*, size_t)) term_str_tag->term_write;
-
     auto fb_tag = (stivale2_struct_tag_framebuffer*) stivale2_get_tag(stivale_struct, STIVALE2_STRUCT_TAG_FRAMEBUFFER_ID);
  
-    term_write("Hello Katline! Now booting...", 29);
-
     if (fb_tag->framebuffer_bpp != 32) {
-        term_write("Unsuported BPP! Halting...", 26);
         for (;;)
             asm ("hlt");
     }
     
-    KGraphics::Framebuffer fb = {
+    Katline::KGraphics::Framebuffer fb = {
         fb_tag->framebuffer_addr,
         fb_tag->framebuffer_width,
         fb_tag->framebuffer_height,
