@@ -17,7 +17,7 @@ FramebufferController::FramebufferController(Framebuffer* framebuffer)
 {
     this->m_framebuffer = framebuffer;
 
-    PutLogo(Logo::Data, Logo::Width, Logo::Height, 10, 20);
+    PutLogo(Logo::Data, Logo::Width, Logo::Height, 10, 10);
 }
 
 void FramebufferController::PlotPixel(uint y, uint x)
