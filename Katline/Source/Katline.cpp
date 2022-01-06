@@ -1,3 +1,5 @@
+#include "Controllers/SerialController.h"
+#include "Debug.h"
 #include <cstddef>
 #include <cstdint>
 
@@ -5,14 +7,16 @@
 
 namespace Katline {
 
-KGraphics::FramebufferController k_framebuffer_controller = NULL;
+Controller::FramebufferController k_framebuffer_controller = NULL;
+Controller::SerialController k_serial_controller;
 
-void KatlineMain(KGraphics::Framebuffer* framebuffer)
+void KatlineMain(Controller::Framebuffer* framebuffer)
 {
-    k_framebuffer_controller = KGraphics::FramebufferController(framebuffer);
+    k_framebuffer_controller = Controller::FramebufferController(framebuffer);
 
-    k_framebuffer_controller.PutStringSafe("Hello framebuffer text rendering!\n", 34);
-    k_framebuffer_controller.PutString("This is another test", true);
+    k_serial_controller.Init();
+
+    Debug::WriteFormatted("Among us?!?!?!?!? %d", 23467824768);
 }
 
 }

@@ -8,7 +8,7 @@
 
 namespace Katline {
 
-namespace KGraphics {
+namespace Controller {
 
 const uint FRAMEBUFFER_TEXT_Y_OFFSET = 72;
 

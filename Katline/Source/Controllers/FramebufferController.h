@@ -8,7 +8,7 @@
 
 namespace Katline {
 
-namespace KGraphics {
+namespace Controller {
 
 struct Framebuffer {
     uint64_t address;

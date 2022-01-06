@@ -51,7 +51,7 @@ extern "C" void kernel_start(stivale2_struct* stivale_struct)
             asm("hlt");
     }
 
-    Katline::KGraphics::Framebuffer fb = {
+    Katline::Controller::Framebuffer fb = {
         fb_tag->framebuffer_addr,
         fb_tag->framebuffer_width,
         fb_tag->framebuffer_height,
