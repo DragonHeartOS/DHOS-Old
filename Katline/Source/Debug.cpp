@@ -11,7 +11,7 @@ strlen(const char* str)
 
     for (s = str; *s; ++s)
         ;
-    return (s - str);
+    return (size_t)(s - str);
 }
 
 char* strcpy(char* destination, const char* source)
@@ -42,11 +42,11 @@ char* strcpy(char* destination, const char* source)
 void revstr(char* str1)
 {
     int i, len, temp;
-    len = strlen(str1);
+    len = (int) strlen(str1);
     for (i = 0; i < len / 2; i++) {
         temp = str1[i];
         str1[i] = str1[len - i - 1];
-        str1[len - i - 1] = temp;
+        str1[len - i - 1] = (char) temp;
     }
 }
 

@@ -7,7 +7,7 @@ set(CMAKE_LINKER "Toolchain/build/bin/x86_64-elf-ld")
 
 project (dhos VERSION 0.1 LANGUAGES C CXX ASM_NASM)
 
-set (WARNING_FLAGS -Wall -Wextra -Wconversion -Wsign-conversion)
+set (WARNING_FLAGS -Wall -Wextra -Wconversion -Wsign-conversion -Wno-varargs)
 set (COMMON_COMPILER_FLAGS ${WARNING_FLAGS})
 set (C_COMPILER_FLAGS ${COMMON_COMPILER_FLAGS})
 set (CXX_COMPILER_FLAGS ${COMMON_COMPILER_FLAGS} -fno-exceptions -fno-rtti)

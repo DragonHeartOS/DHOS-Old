@@ -22,9 +22,9 @@ FramebufferController::FramebufferController(Framebuffer* framebuffer)
 
 void FramebufferController::PlotPixel(uint y, uint x)
 {
-    if (y > m_framebuffer->height - 1)
+    if (y > (uint) m_framebuffer->height - 1)
         y = m_framebuffer->height - 1;
-    if (x > m_framebuffer->width - 1)
+    if (x > (uint) m_framebuffer->width - 1)
         x = m_framebuffer->width - 1;
 
     auto fb = m_framebuffer->data + x * 4 + // X
