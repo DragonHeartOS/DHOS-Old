@@ -26,8 +26,20 @@ fi
 
 CORES=$(($(nproc) - 1))
 
+clean_binutils() {
+	rm -rf build-binutils
+	rm -rf build/{x86_64-elf,}bin/{ar,as,ld,ld.bfd,nm,objcopy,objdump,ranlib,strip}
+	rm -rf build/{x86_64-elf/,}lib/bfd-plugins
+	rm -rf build/lib/bfd-plugins
+	rm -rf build/share/info/{as.info,bfd.info,binutils.info,dir,gprof.info,ld.info}
+	rm -rf build/share/man/x86_64-elf-{addr2line,ar,as,c++filt,dlltool,elfedit,gprof,ld,nm,objcopy,objdump,ranlib,readelf,size,strings,strip,windmc,windres}.1
+	rm -rf build/x86_64-elf/lib/ldscripts
+}
+
 binutils_tries=0
 get_binutils() {
+	clean_binutils
+
 	binutils_tries=$(($binutils_tries + 1))
 	if ! [ -e binutils-$BINUTILS_VER.tar.gz ] || [ "$1" = "redownload" ] ; then
 		rm -rf binutils-$BINUTILS_VER.tar.gz
@@ -61,6 +73,16 @@ get_binutils() {
 		fi
 
 	fi
+}
+
+clean_gcc() {
+	rm -rf build/lib/gcc
+	rm -rf build/bin/x86_64-elf-{lto-dump,g++,c++,gcc,cpp,gcov,gcov-tool,gcov-dump}
+	rm -rf build/bin/x86_64-elf-gcc*
+	rm -rf build/share/info/{gcc,cppinternals,gccinstall,cpp,gccint}.info
+	rm -rf build/share/info/dir
+	rm -rf build/share/man/man1/x86_64-elf-{g++,gcc,cpp,gcov,gcov-tool,gcov-dump,lto-dump}.1
+	rm -rf build/share/man/man7
 }
 
 gcc_tries=0
@@ -105,7 +127,26 @@ get_gcc() {
 	fi
 }
 
-get_binutils
-get_gcc
+BINUTILS_REINSTALL=0
+GCC_REINSTALL=0
 
-echo " :: Done installing the toolchain! You can now build the OS."
+for arg in "$@"; do
+	if [ "$arg" = "--binutils-reinstall" ]; then
+		BINUTILS_REINSTALL=1
+	elif [ "$arg" = "--gcc-reinstall" ]; then
+		GCC_REINSTALL=1
+	fi
+done	
+
+if [ "$BINUTILS_REINSTALL" = "1" ]; then
+	echo " :: Reinstalling binutils"
+	get_binutils
+elif [ "$GCC_REINSTALL" = "1" ]; then
+	echo " :: Reinstalling GCC"
+	get_gcc
+else
+	[ -f "build/bin/x86_64-elf-ld" ] && echo " :: Binutils already installed" || get_binutils
+	[ -f "build/bin/x86_64-elf-gcc" ] && echo " :: GCC already installed" || get_gcc
+fi
+
+echo " :: Done!"
