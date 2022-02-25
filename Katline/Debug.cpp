@@ -5,16 +5,16 @@
 
 // TODO: Move all of those into separate library
 size_t
-strlen(const char* str)
+strlen(char const* str)
 {
-    const char* s;
+    char const* s;
 
     for (s = str; *s; ++s)
         ;
     return (size_t)(s - str);
 }
 
-char* strcpy(char* destination, const char* source)
+char* strcpy(char* destination, char const* source)
 {
     // return if no memory is allocated to the destination
     if (destination == NULL) {
@@ -70,7 +70,7 @@ namespace Katline {
 
 namespace Debug {
 
-void WriteFormatted(const char* str, ...)
+void WriteFormatted(char const* str, ...)
 {
     va_list vl;
     int i = 0;
@@ -91,8 +91,8 @@ void WriteFormatted(const char* str, ...)
             }
             case 'd': {
                 itoa(va_arg(vl, int), (char*)temp);
-                strcpy(&buffer[j], (const char*)temp);
-                j += strlen((const char*)temp);
+                strcpy(&buffer[j], (char const*)temp);
+                j += strlen((char const*)temp);
                 break;
             }
             }

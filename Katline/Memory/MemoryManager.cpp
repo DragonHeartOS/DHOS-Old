@@ -10,7 +10,7 @@ namespace Katline {
 
 namespace Memory {
 
-void MemoryManager::Init(MemoryMap* mmap)
+void MemoryManager::Init(MemoryMap const* mmap)
 {
     for (uint64_t i = 0; i < mmap->size; i++) {
         MemoryData* md = &mmap->data[i];

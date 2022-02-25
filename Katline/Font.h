@@ -8,7 +8,7 @@ namespace Katline {
 
 namespace Font {
 
-const uint8_t KernelFontStd[] = {
+uint8_t const KernelFontStd[] = {
     /*
      * code=0, hex=0x00, ascii="^@"
      */

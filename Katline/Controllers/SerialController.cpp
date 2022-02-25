@@ -68,14 +68,14 @@ void SerialController::Write(char ch)
     }
 }
 
-void SerialController::WriteStringSafe(const char* string, size_t size)
+void SerialController::WriteStringSafe(char const* string, size_t size)
 {
     if (m_enabled)
         for (size_t i = 0; i < size; i++)
             Write(string[i]);
 }
 
-void SerialController::WriteString(const char* string)
+void SerialController::WriteString(char const* string)
 {
     if (m_enabled) {
         while (string[0] != '\0') {

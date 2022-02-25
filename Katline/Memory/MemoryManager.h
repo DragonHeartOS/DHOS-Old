@@ -8,10 +8,9 @@ namespace Katline {
 
 namespace Memory {
 
-class MemoryManager
-{
+class MemoryManager {
 public:
-    static void Init(MemoryMap* mmap);
+    static void Init(MemoryMap const* mmap);
 
     static void* Allocate(size_t size);
     static void Free(void* ptr);

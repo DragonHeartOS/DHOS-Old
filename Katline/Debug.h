@@ -6,7 +6,7 @@ namespace Katline {
 
 namespace Debug {
 
-void WriteFormatted(const char* str, ...);
+void WriteFormatted(char const* str, ...);
 
 }
 

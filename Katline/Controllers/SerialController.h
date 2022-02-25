@@ -11,7 +11,7 @@ namespace Katline {
 
 namespace Controller {
 
-const uint PORT = 0x3f8;
+uint const PORT = 0x3f8;
 
 class SerialController {
 public:
@@ -21,8 +21,8 @@ public:
     char Read();
     int IsTransmitEmpty();
     void Write(char ch);
-    void WriteStringSafe(const char* string, size_t size);
-    void WriteString(const char* string);
+    void WriteStringSafe(char const* string, size_t size);
+    void WriteString(char const* string);
 
 private:
     bool m_enabled = false;

@@ -31,12 +31,12 @@ public:
 
     void PutCharacter(char ch, bool inverted = false);
 
-    void PutStringSafe(const char* string, size_t size, bool inverted = false);
-    void PutString(const char* string, bool inverted = false);
+    void PutStringSafe(char const* string, size_t size, bool inverted = false);
+    void PutString(char const* string, bool inverted = false);
 
     void ScrollDown(uint lines = 1);
 
-    void PutLogo(const uint8_t* data, uint width, uint height, uint x, uint y);
+    void PutLogo(uint8_t const* data, uint width, uint height, uint x, uint y);
 
     Color::RGBColor color = Color::WHITE;
 

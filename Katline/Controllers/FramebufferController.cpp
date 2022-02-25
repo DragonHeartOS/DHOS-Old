@@ -12,7 +12,7 @@ namespace Katline {
 
 namespace Controller {
 
-const uint FRAMEBUFFER_TEXT_Y_OFFSET = 72;
+uint const FRAMEBUFFER_TEXT_Y_OFFSET = 72;
 
 FramebufferController::FramebufferController(Framebuffer* framebuffer)
     : m_framebuffer(framebuffer)
@@ -76,7 +76,7 @@ void FramebufferController::DrawCharacter(char ch, bool inverted)
     DrawRawCharacter(ch, (uint)cursor_position.Y(), (uint)cursor_position.X(), inverted);
 }
 
-// TODO: Put this in LibC
+// TODO: Put this in Marine
 void memset(void* destination, int value, size_t size)
 {
     auto destination_ptr = (uint8_t*)destination;
@@ -106,13 +106,13 @@ void FramebufferController::PutCharacter(char ch, bool inverted)
     }
 }
 
-void FramebufferController::PutStringSafe(const char* string, size_t size, bool inverted)
+void FramebufferController::PutStringSafe(char const* string, size_t size, bool inverted)
 {
     for (size_t i = 0; i < size; i++)
         PutCharacter(string[i], inverted);
 }
 
-void FramebufferController::PutString(const char* string, bool inverted)
+void FramebufferController::PutString(char const* string, bool inverted)
 {
     while (string[0] != '\0') {
         PutCharacter(string[0], inverted);
@@ -120,7 +120,7 @@ void FramebufferController::PutString(const char* string, bool inverted)
     }
 }
 
-// TODO: Put this in LibC
+// TODO: Put this in Marine
 void memcpy(void* dest, void* source, size_t size)
 {
     char* d = (char*)dest;
@@ -143,7 +143,7 @@ void FramebufferController::ScrollDown(uint lines)
         m_framebuffer->pitch * (lines * 8));
 }
 
-void FramebufferController::PutLogo(const uint8_t* data, uint width, uint height, uint x, uint y)
+void FramebufferController::PutLogo(uint8_t const* data, uint width, uint height, uint x, uint y)
 {
     Color::RGBColor old_color = color;
 
