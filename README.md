@@ -1,9 +1,8 @@
-<center>
-<img src="Meta/logo.png" height=80>
-<h1>DragonHeartOS</h1>
-<p>The general purpose operating system</p>
-</center>
-<hr>
+<p align=center>
+<img src="Meta/logo.png" height=120>
+<h1 align=center>DragonHeartOS</h1>
+<p align=center>General purpose operating system</p>
+</p>
 
 ## What is this?
 
