@@ -2,10 +2,11 @@
 #include <cstddef>
 #include <cstdint>
 
-#include <stivale/stivale2.h>
+#include <Katline/stivale/stivale2.h>
 
-#include <Controllers/FramebufferController.h>
-#include <Katline.h>
+#include <Katline/Controllers/FramebufferController.h>
+#include <Katline/Memory/MemoryData.h>
+#include <Katline/Katline.h>
 
 static std::uint8_t stack[8192];
 
@@ -45,6 +46,7 @@ void* stivale2_get_tag(struct stivale2_struct* stivale_struct, uint64_t id)
 extern "C" void kernel_start(stivale2_struct* stivale_struct)
 {
     auto fb_tag = (stivale2_struct_tag_framebuffer*)stivale2_get_tag(stivale_struct, STIVALE2_STRUCT_TAG_FRAMEBUFFER_ID);
+    auto mmap_tag = (stivale2_struct_tag_memmap*)stivale2_get_tag(stivale_struct, STIVALE2_STRUCT_TAG_MEMMAP_ID);
 
     if (fb_tag->framebuffer_bpp != 32) {
         for (;;)
@@ -60,7 +62,12 @@ extern "C" void kernel_start(stivale2_struct* stivale_struct)
         (uint8_t*)fb_tag->framebuffer_addr,
     };
 
-    Katline::KatlineMain(&fb);
+    Katline::Memory::MemoryMap mmap = {
+        .size = mmap_tag->entries,
+        .data = (Katline::Memory::MemoryData*)mmap_tag->memmap,
+    };
+
+    Katline::KatlineMain(&fb, &mmap);
 
     for (;;)
         asm("hlt");

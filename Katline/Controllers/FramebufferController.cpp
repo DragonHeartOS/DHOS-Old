@@ -1,8 +1,8 @@
-#include "CommonLib/Color.h"
-#include "Font.h"
-#include "Logo.h"
+#include <CommonLib/Color.h>
+#include <Katline/Font.h>
+#include <Katline/Logo.h>
 #include <CommonLib/Math.h>
-#include <Controllers/FramebufferController.h>
+#include <Katline/Controllers/FramebufferController.h>
 #include <cstddef>
 #include <cstdint>
 

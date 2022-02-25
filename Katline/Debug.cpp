@@ -1,5 +1,5 @@
-#include "Katline.h"
-#include <Debug.h>
+#include <Katline/Katline.h>
+#include <Katline/Debug.h>
 
 #include <cstdarg>
 

@@ -1,7 +1,7 @@
-#include "Controllers/IO.h"
-#include "Debug.h"
-#include "Katline.h"
-#include <Controllers/SerialController.h>
+#include <Katline/Controllers/IO.h>
+#include <Katline/Debug.h>
+#include <Katline/Katline.h>
+#include <Katline/Controllers/SerialController.h>
 
 namespace Katline {
 
