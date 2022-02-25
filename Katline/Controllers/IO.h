@@ -1,21 +1,21 @@
 #pragma once
 
-#include <stdint.h>
+#include <CommonLib/Common.h>
 
 namespace Katline {
 
 namespace IO {
 
-[[maybe_unused]] static inline void OutB(uint16_t port, uint8_t val)
+[[maybe_unused]] static inline void OutB(u16 port, u8 val)
 {
     asm volatile("outb %0, %1"
                  :
                  : "a"(val), "Nd"(port));
 }
 
-[[maybe_unused]] static inline uint8_t InB(uint16_t port)
+[[maybe_unused]] static inline u8 InB(u16 port)
 {
-    uint8_t ret;
+    u8 ret;
     asm volatile("inb %1, %0"
                  : "=a"(ret)
                  : "Nd"(port));

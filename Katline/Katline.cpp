@@ -5,9 +5,6 @@
 #include <Katline/Memory/MemoryData.h>
 #include <Katline/Memory/MemoryManager.h>
 
-#include <cstddef>
-#include <cstdint>
-
 namespace Katline {
 
 Controller::FramebufferController k_framebuffer_controller = NULL;

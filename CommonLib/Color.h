@@ -2,13 +2,15 @@
 
 #include <cstdint>
 
+#include <CommonLib/Common.h>
+
 namespace Color {
 
 struct RGBColor {
-    uint8_t r, g, b;
+    u8 r, g, b;
 };
 
-const RGBColor WHITE = { 0xff, 0xff, 0xff };
-const RGBColor BLACK = { 0x00, 0x00, 0x00 };
+RGBColor const WHITE = { 0xff, 0xff, 0xff };
+RGBColor const BLACK = { 0x00, 0x00, 0x00 };
 
 }

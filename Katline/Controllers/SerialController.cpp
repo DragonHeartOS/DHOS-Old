@@ -64,7 +64,7 @@ void SerialController::Write(char ch)
         while (IsTransmitEmpty() == 0)
             ;
 
-        IO::OutB(PORT, (uint8_t)ch);
+        IO::OutB(PORT, (u8)ch);
     }
 }
 

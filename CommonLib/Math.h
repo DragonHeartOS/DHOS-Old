@@ -1,5 +1,7 @@
 #pragma once
 
+#include <CommonLib/Common.h>
+
 namespace Math {
 
 class Point {
@@ -19,8 +21,4 @@ private:
     int m_x = 0;
 };
 
-typedef unsigned int uint;
-
 }
-
-using Math::uint;

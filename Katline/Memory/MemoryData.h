@@ -1,12 +1,12 @@
 #pragma once
 
-#include <stdint.h>
+#include <CommonLib/Common.h>
 
 namespace Katline {
 
 namespace Memory {
 
-enum class MemoryType : uint32_t {
+enum class MemoryType : u32 {
     USABLE = 1,
     RESERVED,
     ACPI_RECLAIMABLE,
@@ -18,14 +18,14 @@ enum class MemoryType : uint32_t {
 };
 
 struct MemoryData {
-    uint64_t base;
-    uint64_t size;
+    u64 base;
+    u64 size;
     MemoryType type;
-    uint32_t unused;
+    u32 unused;
 };
 
 struct MemoryMap {
-    uint64_t size;
+    u64 size;
     MemoryData* data;
 };
 

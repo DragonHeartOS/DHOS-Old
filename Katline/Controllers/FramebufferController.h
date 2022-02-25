@@ -1,8 +1,5 @@
 #pragma once
 
-#include <cstddef>
-#include <cstdint>
-
 #include <CommonLib/Color.h>
 #include <CommonLib/Math.h>
 
@@ -11,11 +8,11 @@ namespace Katline {
 namespace Controller {
 
 struct Framebuffer {
-    uint64_t address;
-    uint16_t width, height;
-    uint16_t pitch;
-    uint16_t bpp;
-    uint8_t* data;
+    u64 address;
+    u16 width, height;
+    u16 pitch;
+    u16 bpp;
+    u8* data;
 };
 
 class FramebufferController {
@@ -36,7 +33,7 @@ public:
 
     void ScrollDown(uint lines = 1);
 
-    void PutLogo(uint8_t const* data, uint width, uint height, uint x, uint y);
+    void PutLogo(u8 const* data, uint width, uint height, uint x, uint y);
 
     Color::RGBColor color = Color::WHITE;
 

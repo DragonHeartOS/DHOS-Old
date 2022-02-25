@@ -5,9 +5,6 @@
 #include <Katline/Font.h>
 #include <Katline/Logo.h>
 
-#include <cstddef>
-#include <cstdint>
-
 namespace Katline {
 
 namespace Controller {
@@ -79,7 +76,7 @@ void FramebufferController::DrawCharacter(char ch, bool inverted)
 // TODO: Put this in Marine
 void memset(void* destination, int value, size_t size)
 {
-    auto destination_ptr = (uint8_t*)destination;
+    auto destination_ptr = (u8*)destination;
     for (size_t i = 0; i < size; i++)
         destination_ptr[i] = (unsigned char)value;
 }
@@ -89,7 +86,7 @@ void FramebufferController::PutCharacter(char ch, bool inverted)
     if (ch == '\n') {
         cursor_position.SetX(0);
 
-        if (cursor_position.Y() + FRAMEBUFFER_TEXT_Y_OFFSET + 8 > m_framebuffer->height) {
+        if ((uint)cursor_position.Y() + FRAMEBUFFER_TEXT_Y_OFFSET + 8 > m_framebuffer->height) {
             ScrollDown();
         } else {
             cursor_position.SetY(cursor_position.Y() + 8);
@@ -143,7 +140,7 @@ void FramebufferController::ScrollDown(uint lines)
         m_framebuffer->pitch * (lines * 8));
 }
 
-void FramebufferController::PutLogo(uint8_t const* data, uint width, uint height, uint x, uint y)
+void FramebufferController::PutLogo(u8 const* data, uint width, uint height, uint x, uint y)
 {
     Color::RGBColor old_color = color;
 

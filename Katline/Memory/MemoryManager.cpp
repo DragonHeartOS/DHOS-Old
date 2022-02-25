@@ -4,7 +4,7 @@
 #include <Katline/Memory/Heap.h>
 #include <Katline/Memory/MemoryData.h>
 
-#include <cstdint>
+#include <CommonLib/Common.h>
 
 namespace Katline {
 
@@ -12,7 +12,7 @@ namespace Memory {
 
 void MemoryManager::Init(MemoryMap const* mmap)
 {
-    for (uint64_t i = 0; i < mmap->size; i++) {
+    for (u64 i = 0; i < mmap->size; i++) {
         MemoryData* md = &mmap->data[i];
 
         if (i != 0 && md->type == MemoryType::USABLE)

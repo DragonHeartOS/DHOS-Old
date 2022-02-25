@@ -1,6 +1,4 @@
-#include <bits/stdint-uintn.h>
-#include <cstddef>
-#include <cstdint>
+#include <CommonLib/Common.h>
 
 #include <Katline/stivale/stivale2.h>
 
@@ -8,7 +6,7 @@
 #include <Katline/Katline.h>
 #include <Katline/Memory/MemoryData.h>
 
-static std::uint8_t stack[8192];
+static u8 stack[8192];
 
 extern "C" void kernel_start(stivale2_struct*);
 
@@ -22,13 +20,13 @@ static stivale2_header_tag_framebuffer framebuffer_hdr_tag = {
 };
 
 __attribute__((section(".stivale2hdr"), used)) static stivale2_header stivale_hdr = {
-    .entry_point = (uint64_t)&kernel_start,
-    .stack = (std::uintptr_t)stack + sizeof(stack),
+    .entry_point = (u64)&kernel_start,
+    .stack = (uptr)stack + sizeof(stack),
     .flags = 0b1111,
-    .tags = (std::uintptr_t)&framebuffer_hdr_tag,
+    .tags = (uptr)&framebuffer_hdr_tag,
 };
 
-void* stivale2_get_tag(struct stivale2_struct* stivale_struct, uint64_t id)
+void* stivale2_get_tag(struct stivale2_struct* stivale_struct, u64 id)
 {
     auto* current_tag = (stivale2_tag*)stivale_struct->tags;
 
@@ -59,7 +57,7 @@ extern "C" void kernel_start(stivale2_struct* stivale_struct)
         fb_tag->framebuffer_height,
         fb_tag->framebuffer_pitch,
         fb_tag->framebuffer_bpp,
-        (uint8_t*)fb_tag->framebuffer_addr,
+        (u8*)fb_tag->framebuffer_addr,
     };
 
     Katline::Memory::MemoryMap mmap = {

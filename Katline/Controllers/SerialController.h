@@ -4,8 +4,6 @@
 #include <Katline/Controllers/IO.h>
 
 #include <cstdarg>
-#include <cstddef>
-#include <cstdint>
 
 namespace Katline {
 

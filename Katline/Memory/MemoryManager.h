@@ -2,7 +2,7 @@
 
 #include <Katline/Memory/MemoryData.h>
 
-#include <stddef.h>
+#include <CommonLib/Common.h>
 
 namespace Katline {
 

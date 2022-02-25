@@ -1,6 +1,6 @@
 #pragma once
 
-#include <cstdint>
+#include <CommonLib/Common.h>
 
 // clang-format off
 
@@ -8,7 +8,7 @@ namespace Katline {
 
 namespace Font {
 
-uint8_t const KernelFontStd[] = {
+u8 const KernelFontStd[] = {
     /*
      * code=0, hex=0x00, ascii="^@"
      */

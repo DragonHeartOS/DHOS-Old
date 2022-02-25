@@ -1,8 +1,5 @@
-#include <cstddef>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <CommonLib/Common.h>
+#include <cstring>
 
 namespace Katline {
 
