@@ -34,6 +34,8 @@ public:
     void PutStringSafe(const char* string, size_t size, bool inverted = false);
     void PutString(const char* string, bool inverted = false);
 
+    void ScrollDown(uint lines = 1);
+
     void PutLogo(const uint8_t* data, uint width, uint height, uint x, uint y);
 
     Color::RGBColor color = Color::WHITE;

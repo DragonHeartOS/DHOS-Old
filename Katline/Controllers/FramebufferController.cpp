@@ -1,8 +1,10 @@
+#include <Katline/Controllers/FramebufferController.h>
+
 #include <CommonLib/Color.h>
+#include <CommonLib/Math.h>
 #include <Katline/Font.h>
 #include <Katline/Logo.h>
-#include <CommonLib/Math.h>
-#include <Katline/Controllers/FramebufferController.h>
+
 #include <cstddef>
 #include <cstdint>
 
@@ -22,9 +24,9 @@ FramebufferController::FramebufferController(Framebuffer* framebuffer)
 
 void FramebufferController::PlotPixel(uint y, uint x)
 {
-    if (y > (uint) m_framebuffer->height - 1)
+    if (y > (uint)m_framebuffer->height - 1)
         y = m_framebuffer->height - 1;
-    if (x > (uint) m_framebuffer->width - 1)
+    if (x > (uint)m_framebuffer->width - 1)
         x = m_framebuffer->width - 1;
 
     auto fb = m_framebuffer->data + x * 4 + // X
@@ -74,11 +76,24 @@ void FramebufferController::DrawCharacter(char ch, bool inverted)
     DrawRawCharacter(ch, (uint)cursor_position.Y(), (uint)cursor_position.X(), inverted);
 }
 
+// TODO: Put this in LibC
+void memset(void* destination, int value, size_t size)
+{
+    auto destination_ptr = (uint8_t*)destination;
+    for (size_t i = 0; i < size; i++)
+        destination_ptr[i] = (unsigned char)value;
+}
+
 void FramebufferController::PutCharacter(char ch, bool inverted)
 {
     if (ch == '\n') {
         cursor_position.SetX(0);
-        cursor_position.SetY(cursor_position.Y() + 8);
+
+        if (cursor_position.Y() + FRAMEBUFFER_TEXT_Y_OFFSET + 8 > m_framebuffer->height) {
+            ScrollDown();
+        } else {
+            cursor_position.SetY(cursor_position.Y() + 8);
+        }
     } else {
         DrawCharacter(ch, inverted);
 
@@ -103,6 +118,29 @@ void FramebufferController::PutString(const char* string, bool inverted)
         PutCharacter(string[0], inverted);
         string++;
     }
+}
+
+// TODO: Put this in LibC
+void memcpy(void* dest, void* source, size_t size)
+{
+    char* d = (char*)dest;
+    char* s = (char*)source;
+    for (size_t i = 0; i < size; i++)
+        d[i] = s[i];
+}
+
+// TODO: Fix this
+void FramebufferController::ScrollDown(uint lines)
+{
+    memcpy(
+        m_framebuffer->data + m_framebuffer->pitch * FRAMEBUFFER_TEXT_Y_OFFSET,
+        m_framebuffer->data + m_framebuffer->pitch * (FRAMEBUFFER_TEXT_Y_OFFSET + lines * 8),
+        m_framebuffer->pitch * (m_framebuffer->height - lines * 8 - FRAMEBUFFER_TEXT_Y_OFFSET));
+
+    memset(
+        m_framebuffer->data + m_framebuffer->pitch * (m_framebuffer->height - lines * 8),
+        0,
+        m_framebuffer->pitch * (lines * 8));
 }
 
 void FramebufferController::PutLogo(const uint8_t* data, uint width, uint height, uint x, uint y)

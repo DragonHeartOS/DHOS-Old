@@ -20,7 +20,6 @@ void KatlineMain(Controller::Framebuffer* framebuffer, Memory::MemoryMap* mmap)
     k_serial_controller.Init();
 
     Memory::MM::Init(mmap);
-
 }
 
 }
