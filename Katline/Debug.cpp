@@ -1,5 +1,5 @@
-#include <Katline/Katline.h>
 #include <Katline/Debug.h>
+#include <Katline/Katline.h>
 
 #include <cstdarg>
 
@@ -42,11 +42,11 @@ char* strcpy(char* destination, char const* source)
 void revstr(char* str1)
 {
     int i, len, temp;
-    len = (int) strlen(str1);
+    len = (int)strlen(str1);
     for (i = 0; i < len / 2; i++) {
         temp = str1[i];
         str1[i] = str1[len - i - 1];
-        str1[len - i - 1] = (char) temp;
+        str1[len - i - 1] = (char)temp;
     }
 }
 

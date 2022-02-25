@@ -3,9 +3,9 @@
 #include <CommonLib/Math.h>
 #include <Katline/Controllers/IO.h>
 
+#include <cstdarg>
 #include <cstddef>
 #include <cstdint>
-#include <cstdarg>
 
 namespace Katline {
 

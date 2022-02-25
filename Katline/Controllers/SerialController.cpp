@@ -1,7 +1,7 @@
 #include <Katline/Controllers/IO.h>
+#include <Katline/Controllers/SerialController.h>
 #include <Katline/Debug.h>
 #include <Katline/Katline.h>
-#include <Katline/Controllers/SerialController.h>
 
 namespace Katline {
 
@@ -47,7 +47,7 @@ char SerialController::Read()
         while (Received() == 0)
             ;
 
-        return (char) IO::InB(PORT);
+        return (char)IO::InB(PORT);
     } else {
         return '\0';
     }
@@ -64,7 +64,7 @@ void SerialController::Write(char ch)
         while (IsTransmitEmpty() == 0)
             ;
 
-        IO::OutB(PORT, (uint8_t) ch);
+        IO::OutB(PORT, (uint8_t)ch);
     }
 }
 

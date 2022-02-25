@@ -5,8 +5,8 @@
 #include <Katline/stivale/stivale2.h>
 
 #include <Katline/Controllers/FramebufferController.h>
-#include <Katline/Memory/MemoryData.h>
 #include <Katline/Katline.h>
+#include <Katline/Memory/MemoryData.h>
 
 static std::uint8_t stack[8192];
 
