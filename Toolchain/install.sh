@@ -130,11 +130,21 @@ get_gcc() {
 BINUTILS_REINSTALL=0
 GCC_REINSTALL=0
 
+CLEAN_BINUTILS=0
+CLEAN_GCC=0
+
 for arg in "$@"; do
 	if [ "$arg" = "--binutils-reinstall" ]; then
 		BINUTILS_REINSTALL=1
 	elif [ "$arg" = "--gcc-reinstall" ]; then
 		GCC_REINSTALL=1
+	elif [ "$arg" = "--clean-binutils" ]; then
+		CLEAN_BINUTILS=1
+	elif [ "$arg" = "--clean-gcc" ]; then
+		CLEAN_GCC=1
+	elif [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+		echo "Usage: $0 [--binutils-reinstall] [--gcc-reinstall] [--clean-binutils] [--clean-gcc]"
+		exit 0
 	fi
 done	
 
@@ -144,6 +154,12 @@ if [ "$BINUTILS_REINSTALL" = "1" ]; then
 elif [ "$GCC_REINSTALL" = "1" ]; then
 	echo " :: Reinstalling GCC"
 	get_gcc
+elif [ "$CLEAN_BINUTILS" = "1" ]; then
+	echo " :: Cleaning binutils"
+	clean_binutils
+elif [ "$CLEAN_GCC" = "1" ]; then
+	echo " :: Cleaning GCC"
+	clean_gcc
 else
 	[ -f "build/bin/x86_64-elf-ld" ] && echo " :: Binutils already installed" || get_binutils
 	[ -f "build/bin/x86_64-elf-gcc" ] && echo " :: GCC already installed" || get_gcc
