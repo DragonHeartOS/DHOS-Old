@@ -1,6 +1,6 @@
 #pragma once
 
-#include <CommonLib/Common.h>
+#include <CommonLib/Types.h>
 
 namespace Katline {
 

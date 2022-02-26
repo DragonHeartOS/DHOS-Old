@@ -1,7 +1,6 @@
-#include <CommonLib/Common.h>
-
 #include <Katline/stivale/stivale2.h>
 
+#include <CommonLib/Types.h>
 #include <Katline/Controllers/FramebufferController.h>
 #include <Katline/Katline.h>
 #include <Katline/Memory/MemoryData.h>

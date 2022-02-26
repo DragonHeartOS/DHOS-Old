@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-#include <CommonLib/Common.h>
+#include <CommonLib/Types.h>
 
 namespace Color {
 

@@ -1,10 +1,9 @@
 #include <Katline/Memory/MemoryManager.h>
 
+#include <CommonLib/Types.h>
 #include <Katline/Debug.h>
 #include <Katline/Memory/Heap.h>
 #include <Katline/Memory/MemoryData.h>
-
-#include <CommonLib/Common.h>
 
 namespace Katline {
 
