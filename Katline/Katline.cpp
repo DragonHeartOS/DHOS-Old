@@ -4,6 +4,7 @@
 #include <Katline/Debug.h>
 #include <Katline/Memory/MemoryData.h>
 #include <Katline/Memory/MemoryManager.h>
+#include <Katline/Arch/IDT.h>
 
 namespace Katline {
 
@@ -17,6 +18,9 @@ void KatlineMain(Controller::Framebuffer* framebuffer, Memory::MemoryMap* mmap)
     k_serial_controller.Init();
 
     Memory::MM::Init(mmap);
+
+    IDT::Init();
+
 }
 
 }

@@ -4,7 +4,9 @@ set (SOURCES
     Controllers/FramebufferController.cpp
     Controllers/SerialController.cpp
     Debug.cpp
-    StivaleStart.cpp
+    Arch/Interrupts.cpp
+    Arch/IDT.cpp
+    Arch/StivaleStart.cpp
     Katline.cpp)
 
 add_executable (${KERNEL_TARGET} ${SOURCES})
