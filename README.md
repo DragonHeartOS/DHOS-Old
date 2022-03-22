@@ -27,8 +27,7 @@ $ ninja run     # Run virtual machine
  - 64-bit
  - Multitasking kernel
  - Everything is easly accessible to the user, including the hardware
- - Filesystem like FAT-32
- - Shell with ability to interact with libraries (similar to pwsh). This will make the terminal as powerful to use as the GUI
+ - Filesystem: FAT-32
 
 ## Components
 
